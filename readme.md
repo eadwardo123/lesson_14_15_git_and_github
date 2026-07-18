@@ -21,3 +21,8 @@ git add .
 7. give message before send it to github
 ```shell
 git commit -m "your message" // for example "first commit"
+```
+8. push your code using git push
+```shell
+git push origin main
+```
