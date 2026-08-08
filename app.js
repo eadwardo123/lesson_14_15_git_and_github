@@ -87,6 +87,23 @@ app.post("/finance/store", async(req,res) =>{
     }
 })
 
+// database connection test
+app.get("db-test", async(req,res)=>{
+    try{
+        const [rows] = await pool.query("SELECT 1 AS OK")
+        res.json({
+            success:true,
+            data:rows
+        })
+    }catch(err){
+        console.log("Database Error:",err)
+        res.send(err).json({
+            success:false,
+            error:err.code,
+            message:err.message
+        })
+    }
+})
 app.listen(port, ()=>{
     console.log(`server run on http://localhost:${port}`)
 })
