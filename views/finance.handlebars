@@ -1,0 +1,88 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="text-center">finance manger apps</h1>
+    </div>
+</div>
+
+<div class="row mt-4 mb-4">
+    <div class="col-lg-6">
+        <h4>income</h4>
+        <p class="text-success">Rp.{{income}}</p>
+    </div>
+    <div class="col-lg-6">
+        <h4>outcome</h4>
+        <p class="text-danger">Rp.{{outcome}}</p>
+    </div>
+</div>
+
+<div class="row mt-2 mb-4">
+    <div class="col-lg-12text-center">
+        <h4>total balnce</h4>
+        <p class="text-warning">Rp.{{balance}}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4 class="text-center">input finance</h4>
+        <form method="post" action="/finance/store">
+            <div class="mb-3">
+                <label for="transaction_name" class="form-label">transaction name</label>
+                <input type="text" class="form-control" id="transaction_name" name="transaction_name"
+                    placeholder="input transaction name : buy toys, buy gear, buy games">
+            </div>
+            <div class="mb-3">
+                <label for="money" class="form-label">money</label>
+                <input type="number" class="form-control" id="money" name="money"
+                    placeholder="your money income/outcome">
+            </div>
+            <div class="mb-3">
+                <label for="transaction type" class="form-label">transaction type</label>
+                <select class="form-select" aria-label="Default select example" name="transaction_type">
+                    <option selected>select transaction type</option>
+                    <option value="income">➕income</option>
+                    <option value="outcome">➖outcome</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+<hr class="my-5">
+<div class="row mt-2">
+    <div class="col-lg-12">
+        <h4 class="text-center-mb-3">transaction history</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>transaction name</th>
+                        <th>type</th>
+                        <th>amount (Rp)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each transaction}}
+                        <tr>
+                            <td>{{this.date}}</td>
+                            <td>{{this.transaction_name}}</td>
+                            <td>
+                                {{#if (eq this.transaction_type "income")}}
+                                <span class="badge bg-success">income</span>
+                                {{else}}
+                                    <span class="badge bg-danger">outcome</span>
+                                {{/if}}
+                            </td>
+                            <td>{{this.money}}</td>
+                        </tr>
+                    {{else}}
+                        <tr>
+                            <td colspan="4" class="text-center">no transaction history yet</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

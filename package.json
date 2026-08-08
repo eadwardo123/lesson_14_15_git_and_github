@@ -20,8 +20,10 @@
   },
   "homepage": "https://github.com/eadwardo123/lesson_14_15_git_and_github#readme",
   "dependencies": {
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "express-handlebars": "^9.0.1",
-    "handlebars": "^4.7.9"
+    "handlebars": "^4.7.9",
+    "mysql2": "^3.23.1"
   }
 }
