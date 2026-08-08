@@ -88,7 +88,7 @@ app.post("/finance/store", async(req,res) =>{
 })
 
 // database connection test
-app.get("db-test", async(req,res)=>{
+app.get("/db-test", async(req,res)=>{
     try{
         const [rows] = await pool.query("SELECT 1 AS OK")
         res.json({
