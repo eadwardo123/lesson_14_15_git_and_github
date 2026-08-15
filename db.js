@@ -1,5 +1,7 @@
 import mysql from 'mysql2/promise'
 import dotenv from 'dotenv'
+import fs from 'fs'
+import path from 'path'
 
 dotenv.config()
 
@@ -14,10 +16,11 @@ const pool = mysql.createPool({
     queueLimit : 0,
     connectTimeout: 10000,
     ssl:{
-        rejectUnauthorized:false
+        ca: fs.readdirSync(
+        path.join(process.cwd(), 'ca.pem')
+        ),
+        rejectUnauthorized:true
     }
-
-
 })
 
 export default pool
